@@ -43,7 +43,10 @@ func main() {
 
 func writeEnvironment(w io.Writer) error {
 	var buffer bytes.Buffer
+
 	defaultIfaceName, err := getDefaultGatewayIfaceName()
+        buffer.WriteString(fmt.Sprintf("DEFAULT_IFACE=%s\n", defaultIfaceName))
+
 	if err != nil {
 		// A default route is not required; log it and keep going.
 		log.Println(err)
